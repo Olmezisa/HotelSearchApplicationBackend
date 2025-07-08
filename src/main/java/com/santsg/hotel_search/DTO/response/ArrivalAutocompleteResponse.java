@@ -1,4 +1,4 @@
-package com.santsg.hotel_search.DTO.Reponse;
+package com.santsg.hotel_search.DTO.response;
 
 
 

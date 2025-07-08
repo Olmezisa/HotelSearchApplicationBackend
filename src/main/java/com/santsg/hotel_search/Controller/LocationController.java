@@ -15,10 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.santsg.hotel_search.DTO.ArrivalAutocompleteRequest;
-import com.santsg.hotel_search.DTO.ArrivalLocation;
 import com.santsg.hotel_search.DTO.CheckInDatesRequest;
-import com.santsg.hotel_search.DTO.Reponse.ArrivalAutocompleteResponse;
-import com.santsg.hotel_search.DTO.Reponse.CheckInDatesResponse;
+import com.santsg.hotel_search.DTO.response.ArrivalAutocompleteResponse;
+import com.santsg.hotel_search.DTO.response.CheckInDatesResponse;
 import com.santsg.hotel_search.Services.SanTsgAuthService;
 
 import java.util.List;
@@ -36,9 +35,9 @@ public class LocationController {
     @Value("${santsg.api.base-url}")
     private String sanTsgBaseUrl;
 
-    public LocationController(SanTsgAuthService authService) {
+    public LocationController(SanTsgAuthService authService, RestTemplate restTemplate) {
         this.authService = authService;
-        this.restTemplate=new RestTemplate();
+        this.restTemplate=restTemplate;
     }
 
    
@@ -89,21 +88,19 @@ public class LocationController {
 
 
  @PostMapping("/check-in-dates")
-public ResponseEntity<List<String>> getCheckInDates(@RequestBody ArrivalLocation locationRequest) {
+public ResponseEntity<List<String>> getCheckInDates(@RequestBody CheckInDatesRequest apiRequest) {
     
-    log.info("Lokasyon ID: {} ve Tipi: {} için giriş tarihleri isteniyor.", locationRequest.getId(), locationRequest.getType());
+    log.info("Doğrudan geçiş modeli ile check-in-dates isteği alındı.");
+    log.info("Gelen İstek Gövdesi: {}", apiRequest.toString()); 
 
+    
     String token = authService.getAuthToken();
-
-    CheckInDatesRequest apiRequest = new CheckInDatesRequest();
-    apiRequest.setProductType(2); 
-    apiRequest.setIncludeSubLocations(true);
-    apiRequest.setProduct(null);
-    apiRequest.setArrivalLocations(List.of(locationRequest));
 
     HttpHeaders headers = new HttpHeaders();
     headers.setBearerAuth(token);
     headers.setContentType(MediaType.APPLICATION_JSON);
+    
+    
     HttpEntity<CheckInDatesRequest> requestEntity = new HttpEntity<>(apiRequest, headers);
 
     String url = sanTsgBaseUrl + "/api/productservice/getcheckindates";
@@ -117,7 +114,7 @@ public ResponseEntity<List<String>> getCheckInDates(@RequestBody ArrivalLocation
         );
         
         if (response.getBody() != null) {
-            return ResponseEntity.ok(response.getBody().getDates());
+            return ResponseEntity.ok(response.getBody().getBody().getDates());
         } else {
             return ResponseEntity.status(500).build();
         }

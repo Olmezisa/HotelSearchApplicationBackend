@@ -1,6 +1,6 @@
-package com.santsg.hotel_search.DTO.Reponse;
+package com.santsg.hotel_search.DTO.response;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.Data;
 import java.time.ZonedDateTime;
 
