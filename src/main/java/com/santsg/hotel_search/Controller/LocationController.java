@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.santsg.hotel_search.DTO.ArrivalAutocompleteRequest;
-import com.santsg.hotel_search.DTO.ArrivalAutocompleteResponse;
 import com.santsg.hotel_search.DTO.ArrivalLocation;
 import com.santsg.hotel_search.DTO.CheckInDatesRequest;
-import com.santsg.hotel_search.DTO.CheckInDatesResponse;
+import com.santsg.hotel_search.DTO.Reponse.ArrivalAutocompleteResponse;
+import com.santsg.hotel_search.DTO.Reponse.CheckInDatesResponse;
 import com.santsg.hotel_search.Services.SanTsgAuthService;
 
 import java.util.List;
@@ -88,28 +88,24 @@ public class LocationController {
     }
 
 
-  @PostMapping("/check-in-dates")
+ @PostMapping("/check-in-dates")
 public ResponseEntity<List<String>> getCheckInDates(@RequestBody ArrivalLocation locationRequest) {
-   
-    log.info("Lokasyon ID: {} için giriş tarihleri isteniyor.", locationRequest.getId());
-
     
+    log.info("Lokasyon ID: {} ve Tipi: {} için giriş tarihleri isteniyor.", locationRequest.getId(), locationRequest.getType());
+
     String token = authService.getAuthToken();
 
-   
     CheckInDatesRequest apiRequest = new CheckInDatesRequest();
     apiRequest.setProductType(2); 
     apiRequest.setIncludeSubLocations(true);
     apiRequest.setProduct(null);
     apiRequest.setArrivalLocations(List.of(locationRequest));
 
-    
     HttpHeaders headers = new HttpHeaders();
     headers.setBearerAuth(token);
     headers.setContentType(MediaType.APPLICATION_JSON);
     HttpEntity<CheckInDatesRequest> requestEntity = new HttpEntity<>(apiRequest, headers);
 
-   
     String url = sanTsgBaseUrl + "/api/productservice/getcheckindates";
     
     try {
@@ -120,7 +116,6 @@ public ResponseEntity<List<String>> getCheckInDates(@RequestBody ArrivalLocation
                 CheckInDatesResponse.class
         );
         
-       
         if (response.getBody() != null) {
             return ResponseEntity.ok(response.getBody().getDates());
         } else {

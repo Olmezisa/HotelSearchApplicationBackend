@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.santsg.hotel_search.DTO.LoginRequest;
-import com.santsg.hotel_search.DTO.LoginResponse;
+import com.santsg.hotel_search.DTO.Reponse.LoginResponse;
 
 import jakarta.annotation.PostConstruct;
 

@@ -1,10 +1,12 @@
-package com.santsg.hotel_search.DTO;
+package com.santsg.hotel_search.DTO.Reponse;
 
 
 
 import lombok.Data;
 import java.util.List;
 import java.util.Map;
+
+import com.santsg.hotel_search.DTO.GiataInfo;
 
 @Data
 public class ArrivalAutocompleteResponse {
@@ -21,8 +23,10 @@ public class ArrivalAutocompleteResponse {
         private int type;
         private Geolocation geolocation;
         private Map<String, String> country;
+        private Map<String, String> state;
         private Map<String, String> city;
-      
+        private GiataInfo giataInfo; 
+        private int provider;
     }
 
     

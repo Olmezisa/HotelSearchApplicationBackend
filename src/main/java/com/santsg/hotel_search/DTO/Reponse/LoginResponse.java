@@ -1,4 +1,4 @@
-package com.santsg.hotel_search.DTO;
+package com.santsg.hotel_search.DTO.Reponse;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
