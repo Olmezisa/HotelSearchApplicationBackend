@@ -11,6 +11,8 @@ import org.springframework.web.client.RestTemplate;
 import com.santsg.hotel_search.DTO.LoginRequest;
 import com.santsg.hotel_search.DTO.LoginResponse;
 
+import jakarta.annotation.PostConstruct;
+
 @Service
 public class SanTsgAuthService {
 
@@ -31,6 +33,17 @@ public class SanTsgAuthService {
     
     public SanTsgAuthService() {
         this.restTemplate = new RestTemplate();
+    }
+     @PostConstruct
+    public void init() {
+        try {
+            log.info("Uygulama başlangıcında token alınıyor");
+            getAuthToken(); 
+            log.info("Token başarıyla alındı ve cache'lendi.");
+        } catch (Exception e) {
+            log.error("Uygulama başlangıcında token alınamadı: ", e);
+            
+        }
     }
     
     @Cacheable("sanTsgToken") 
