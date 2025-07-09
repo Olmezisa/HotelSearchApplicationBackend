@@ -89,8 +89,7 @@ public class LocationController {
 
  @PostMapping("/check-in-dates")
 public ResponseEntity<List<String>> getCheckInDates(@RequestBody CheckInDatesRequest apiRequest) {
-    
-    log.info("Doğrudan geçiş modeli ile check-in-dates isteği alındı.");
+
     log.info("Gelen İstek Gövdesi: {}", apiRequest.toString()); 
 
     
@@ -123,4 +122,7 @@ public ResponseEntity<List<String>> getCheckInDates(@RequestBody CheckInDatesReq
         return ResponseEntity.status(500).build();
     }
 }
+   
 }
+
+     
