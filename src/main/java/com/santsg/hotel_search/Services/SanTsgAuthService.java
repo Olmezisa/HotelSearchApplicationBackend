@@ -33,7 +33,6 @@ public class SanTsgAuthService {
 
     @Cacheable("sanTsgToken") 
     public String getAuthToken() {
-        log.info("Cache'de token bulunamadı veya süresi doldu. SAN TSG API'sinden yeni token isteniyor...");
         
         String loginUrl = baseUrl + "/api/authenticationservice/login";
         LoginRequest requestBody = new LoginRequest(agency, user, password);

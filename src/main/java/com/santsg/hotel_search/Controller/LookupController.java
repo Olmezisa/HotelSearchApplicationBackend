@@ -4,7 +4,7 @@ import com.santsg.hotel_search.DTO.Currency;
 import com.santsg.hotel_search.DTO.Nationality;
 import com.santsg.hotel_search.Services.LookupService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,14 +21,14 @@ public class LookupController {
     }
 
     
-    @PostMapping("/nationalities")
+    @GetMapping("/nationalities")
     public ResponseEntity<List<Nationality>> getNationalities() {
         List<Nationality> nationalities = lookupService.getNationalities();
         return ResponseEntity.ok(nationalities);
     }
 
     
-    @PostMapping("/currencies")
+    @GetMapping("/currencies")
     public ResponseEntity<List<Currency>> getCurrencies() {
         List<Currency> currencies = lookupService.getCurrencies();
         return ResponseEntity.ok(currencies);

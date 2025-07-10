@@ -4,8 +4,6 @@ package com.santsg.hotel_search.Controller;
 import com.santsg.hotel_search.DTO.CheckInDatesRequest;
 import com.santsg.hotel_search.DTO.response.ArrivalAutocompleteResponse;
 import com.santsg.hotel_search.Services.LocationService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,7 +17,6 @@ import java.util.Map;
 @RequestMapping("/api/v1/locations")
 public class LocationController {
 
-    private static final Logger log = LoggerFactory.getLogger(LocationController.class);
     private final LocationService locationService;
 
     public LocationController(LocationService locationService) {
@@ -32,7 +29,6 @@ public class LocationController {
         if (query == null || query.isBlank()) {
             return ResponseEntity.badRequest().build();
         }
-        log.info("'{}' için otomatik tamamlama isteği alındı.", query);
         ArrivalAutocompleteResponse.Body responseBody = locationService.getArrivalAutocomplete(query);
         return ResponseEntity.ok(responseBody);
     }
@@ -40,7 +36,6 @@ public class LocationController {
    
     @PostMapping("/check-in-dates")
     public ResponseEntity<List<String>> getCheckInDates(@RequestBody CheckInDatesRequest apiRequest) {
-        log.info("Gelen İstek Gövdesi: {}", apiRequest.toString());
         List<String> dates = locationService.getCheckInDates(apiRequest);
         return ResponseEntity.ok(dates);
     }
