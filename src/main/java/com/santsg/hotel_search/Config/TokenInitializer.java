@@ -22,11 +22,10 @@ public class TokenInitializer implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         try {
-            log.info("Uygulama tamamen başlatıldı. İlk token alınıyor ve cache'leniyor...");
             authService.getAuthToken();
-            log.info("İlk token başarıyla alındı ve cache'lendi.");
+            log.info("token alındı ve cachelendi");
         } catch (Exception e) {
-            log.error("Uygulama başlangıcında token alınırken KRİTİK HATA oluştu!", e);
+            log.error("token alınırken hata oluştu", e);
         }
     }
 }
