@@ -31,14 +31,14 @@ public class PriceSearchByLocationResponse {
         private String searchId;
         private String expiresOn;
         private List<Hotel> hotels;
-        private List<Tour> tours; // boş da olabilir, model hazır olsun
+        private List<Tour> tours;
         private Details details;
     }
 
     @Data
     public static class Details {
         private boolean enablePaging;
-        private boolean getOnlyBestOffers; // bazen dönmeyebilir
+        private boolean getOnlyBestOffers; 
     }
 
     @Data
@@ -136,7 +136,9 @@ public class PriceSearchByLocationResponse {
 
     @Data
     public static class Badge {
-        // badge içeriği boşsa bu haliyle kalabilir
+                private String id;
+        private String name;
+        private String type;
     }
 
     @Data
@@ -149,7 +151,7 @@ public class PriceSearchByLocationResponse {
     @Data
     @JsonInclude(JsonInclude.Include.NON_NULL)
     public static class ThirdPartyInformation {
-        private List<Object> infos; // tipi belli değilse Object olarak bırak
+        private List<Object> infos; 
     }
 
     @Data
@@ -213,6 +215,6 @@ public class PriceSearchByLocationResponse {
 
     @Data
     public static class Tour {
-        // boş dönüyor, model gerekirse detaylandırılır
+        
     }
 }
