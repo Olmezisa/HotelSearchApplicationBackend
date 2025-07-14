@@ -8,6 +8,8 @@ public class HotelInfo {
     private String id;
     private String name;
     private String code;
+    private int provider;
+    private int stars;
     private String thumbnail;
     private String thumbnailFull;
     private String faxNumber;
