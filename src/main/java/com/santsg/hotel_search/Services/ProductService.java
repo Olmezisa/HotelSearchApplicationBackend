@@ -26,17 +26,22 @@ public class ProductService {
         this.authService = authService;
     }
 
-   
-    public HotelInfo getProductInfo(ProductInfoRequest apiRequest) {
+    public HotelInfo getProductInfo(String productId) {
         String token = authService.getAuthToken();
 
+        
+        ProductInfoRequest apiRequest = new ProductInfoRequest();
+        apiRequest.setProduct(productId);
+        apiRequest.setProductType(2);   
+        apiRequest.setOwnerProvider(2);  
+        apiRequest.setCulture("en-US");  
+        
 
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(token);
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<ProductInfoRequest> requestEntity = new HttpEntity<>(apiRequest, headers);
-       
-
+        
         String url = sanTsgBaseUrl + "/api/productservice/getproductinfo";
 
         ProductInfoApiResponse response = restTemplate.exchange(
