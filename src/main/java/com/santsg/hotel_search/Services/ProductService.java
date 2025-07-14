@@ -26,20 +26,21 @@ public class ProductService {
         this.authService = authService;
     }
 
-    public HotelInfo getProductInfo(String productId) {
+   
+    public HotelInfo getProductInfo(String productId, int provider) {
         String token = authService.getAuthToken();
 
-        
         ProductInfoRequest apiRequest = new ProductInfoRequest();
         apiRequest.setProduct(productId);
-        apiRequest.setProductType(2);   
-        apiRequest.setOwnerProvider(2);  
-        apiRequest.setCulture("en-US");  
+        apiRequest.setProductType(2);
         
+        apiRequest.setOwnerProvider(provider);
+        apiRequest.setCulture("en-US");
 
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(token);
         headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.set("ngrok-skip-browser-warning", "true"); 
         HttpEntity<ProductInfoRequest> requestEntity = new HttpEntity<>(apiRequest, headers);
         
         String url = sanTsgBaseUrl + "/api/productservice/getproductinfo";
