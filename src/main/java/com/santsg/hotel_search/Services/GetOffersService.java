@@ -7,7 +7,6 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-
 @Service
 public class GetOffersService {
 
@@ -17,11 +16,13 @@ public class GetOffersService {
     @Value("${santsg.api.base-url}")
     private String baseUrl;
 
+    
     public GetOffersService(RestTemplate restTemplate, SanTsgAuthService authService) {
         this.restTemplate = restTemplate;
         this.authService = authService;
     }
 
+    
     public GetOffersResponse getOffers(GetOffersRequest request) {
         String token = authService.getAuthToken();
         String url = baseUrl + "/api/productservice/getoffers";
@@ -41,4 +42,3 @@ public class GetOffersService {
         return response.getBody();
     }
 }
-
