@@ -30,7 +30,7 @@ public class PriceSearchByLocationRequest {
         private String id;
 
         @JsonProperty("type")
-        private int type;
+        private int type=2;
     }
 
     @Data

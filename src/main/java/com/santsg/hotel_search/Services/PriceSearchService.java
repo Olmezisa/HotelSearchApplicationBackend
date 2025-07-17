@@ -7,7 +7,6 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-
 @Service
 public class PriceSearchService {
 
@@ -22,7 +21,8 @@ public class PriceSearchService {
         this.authService = authService;
     }
 
-    public PriceSearchByLocationResponse handleByLocation(PriceSearchByLocationRequest request) {
+
+    private <Q, S> S performSearch(Q request, Class<S> responseType) {
         String token = authService.getAuthToken();
         String url = baseUrl + "/api/productservice/pricesearch";
 
@@ -30,24 +30,19 @@ public class PriceSearchService {
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setBearerAuth(token);
 
-        HttpEntity<PriceSearchByLocationRequest> entity = new HttpEntity<>(request, headers);
-        ResponseEntity<PriceSearchByLocationResponse> response = restTemplate.exchange(url, HttpMethod.POST, entity, PriceSearchByLocationResponse.class);
-
+        HttpEntity<Q> entity = new HttpEntity<>(request, headers);
+        ResponseEntity<S> response = restTemplate.exchange(url, HttpMethod.POST, entity, responseType);
+        
         return response.getBody();
+    }
+
+    public PriceSearchByLocationResponse handleByLocation(PriceSearchByLocationRequest request) {
+       
+        return performSearch(request, PriceSearchByLocationResponse.class);
     }
 
     public PriceSearchByHotelResponse handleByHotel(PriceSearchByHotelRequest request) {
-        String token = authService.getAuthToken();
-        String url = baseUrl + "/api/productservice/pricesearch";
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.setBearerAuth(token);
-
-        HttpEntity<PriceSearchByHotelRequest> entity = new HttpEntity<>(request, headers);
-        ResponseEntity<PriceSearchByHotelResponse> response = restTemplate.exchange(url, HttpMethod.POST, entity, PriceSearchByHotelResponse.class);
-
-        return response.getBody();
+        
+        return performSearch(request, PriceSearchByHotelResponse.class);
     }
 }
-

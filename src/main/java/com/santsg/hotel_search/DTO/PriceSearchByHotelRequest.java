@@ -17,8 +17,6 @@ public class PriceSearchByHotelRequest {
     @JsonProperty("Products")
     private List<String> products;
 
-    private List<ProductPriceCategory> productPriceCategories;
-
     private List<RoomCriterion> roomCriteria;
 
     private String nationality;
@@ -27,11 +25,6 @@ public class PriceSearchByHotelRequest {
     private String currency;
     private String culture = "en-US";
 
-    @Data
-    public static class ProductPriceCategory {
-        private String product;
-        private String category;
-    }
 
     @Data
     public static class RoomCriterion {
