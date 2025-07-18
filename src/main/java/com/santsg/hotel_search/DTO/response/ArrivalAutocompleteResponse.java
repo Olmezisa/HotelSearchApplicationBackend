@@ -26,9 +26,17 @@ public class ArrivalAutocompleteResponse {
         private Map<String, String> state;
         private Map<String, String> city;
         private GiataInfo giataInfo; 
+        private Hotel hotel;
         private int provider;
     }
 
+
+    @Data
+    public static class Hotel{
+        private String internationalName;
+        private String id;
+        private String name;
+    }
     
     @Data
     public static class Geolocation {

@@ -225,11 +225,11 @@ public class GetOfferDetailsResponse {
         private int willBePayAt;
         private String checkIn;
         private Price price;
-        private PriceBreakDown priceBreakDown;
+        private ServicePriceBreakDown servicePriceBreakDown;
     }
 
     @Data
-    public static class PriceBreakDown {
+    public static class ServicePriceBreakDown {
         private List<PriceBreakDownItem> items;
     }
 
