@@ -1,6 +1,8 @@
 package com.santsg.hotel_search.Services;
 
 import com.santsg.hotel_search.DTO.BeginTransactionRequest;
+import com.santsg.hotel_search.DTO.CommitTransactionRequest;
+import com.santsg.hotel_search.DTO.CommitTransactionResponse;
 import com.santsg.hotel_search.DTO.RemoveServicesRequest; // Yeni DTO'yu import et
 import com.santsg.hotel_search.DTO.AddServices.AddServicesRequest;
 import com.santsg.hotel_search.DTO.SetReservationInfo.SetReservationInfoRequest;
@@ -76,5 +78,16 @@ public class BookingService {
         
         return restTemplate.exchange(
                 url, HttpMethod.POST, requestEntity, BeginTransactionResponse.class).getBody();
+    }
+    public CommitTransactionResponse commitTransaction(CommitTransactionRequest apiRequest) {
+        String token = authService.getAuthToken();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setBearerAuth(token);
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<CommitTransactionRequest> requestEntity = new HttpEntity<>(apiRequest, headers);
+        String url = sanTsgBaseUrl + "/api/bookingservice/committransaction";
+
+        return restTemplate.exchange(
+                url, HttpMethod.POST, requestEntity, CommitTransactionResponse.class).getBody();
     }
 }

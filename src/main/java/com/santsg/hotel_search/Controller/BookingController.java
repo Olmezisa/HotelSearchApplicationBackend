@@ -2,6 +2,8 @@ package com.santsg.hotel_search.Controller;
 
 
 import com.santsg.hotel_search.DTO.BeginTransactionRequest;
+import com.santsg.hotel_search.DTO.CommitTransactionRequest;
+import com.santsg.hotel_search.DTO.CommitTransactionResponse;
 import com.santsg.hotel_search.DTO.RemoveServicesRequest;
 import com.santsg.hotel_search.DTO.AddServices.AddServicesRequest;
 import com.santsg.hotel_search.DTO.SetReservationInfo.SetReservationInfoRequest;
@@ -64,6 +66,15 @@ public class BookingController {
         }
         log.info("Rezervasyon bilgileri kaydediliyor. Transaction ID: {}", request.getTransactionId());
         BeginTransactionResponse response = bookingService.setReservationInfo(request);
+        return ResponseEntity.ok(response);
+    }
+    @PostMapping("/commit-transaction")
+    public ResponseEntity<CommitTransactionResponse> commitTransaction(@RequestBody CommitTransactionRequest request) {
+        if (request.getTransactionId() == null || request.getTransactionId().isBlank()) {
+            return ResponseEntity.badRequest().build();
+        }
+        log.info("Rezervasyon tamamlanıyor. Transaction ID: {}", request.getTransactionId());
+        CommitTransactionResponse response = bookingService.commitTransaction(request);
         return ResponseEntity.ok(response);
     }
 }
