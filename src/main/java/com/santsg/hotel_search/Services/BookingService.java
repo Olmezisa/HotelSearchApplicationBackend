@@ -3,6 +3,10 @@ package com.santsg.hotel_search.Services;
 import com.santsg.hotel_search.DTO.BeginTransactionRequest;
 import com.santsg.hotel_search.DTO.CommitTransactionRequest;
 import com.santsg.hotel_search.DTO.CommitTransactionResponse;
+import com.santsg.hotel_search.DTO.GetReservationDetailRequest;
+import com.santsg.hotel_search.DTO.GetReservationDetailResponse;
+import com.santsg.hotel_search.DTO.GetReservationListRequest;
+import com.santsg.hotel_search.DTO.GetReservationListResponse;
 import com.santsg.hotel_search.DTO.RemoveServicesRequest; // Yeni DTO'yu import et
 import com.santsg.hotel_search.DTO.AddServices.AddServicesRequest;
 import com.santsg.hotel_search.DTO.SetReservationInfo.SetReservationInfoRequest;
@@ -89,5 +93,27 @@ public class BookingService {
 
         return restTemplate.exchange(
                 url, HttpMethod.POST, requestEntity, CommitTransactionResponse.class).getBody();
+    }
+    public GetReservationDetailResponse getReservationDetail(GetReservationDetailRequest apiRequest) {
+        String token = authService.getAuthToken();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setBearerAuth(token);
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<GetReservationDetailRequest> requestEntity = new HttpEntity<>(apiRequest, headers);
+        String url = sanTsgBaseUrl + "/api/bookingservice/getreservationdetail";
+
+        return restTemplate.exchange(
+                url, HttpMethod.POST, requestEntity, GetReservationDetailResponse.class).getBody();
+    }
+    public GetReservationListResponse getReservationList(GetReservationListRequest apiRequest) {
+        String token = authService.getAuthToken();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setBearerAuth(token);
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<GetReservationListRequest> requestEntity = new HttpEntity<>(apiRequest, headers);
+        String url = sanTsgBaseUrl + "/api/bookingservice/getreservationlist";
+
+        return restTemplate.exchange(
+                url, HttpMethod.POST, requestEntity, GetReservationListResponse.class).getBody();
     }
 }
