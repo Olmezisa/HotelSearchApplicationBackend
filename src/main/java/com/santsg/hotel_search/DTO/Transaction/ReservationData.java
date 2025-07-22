@@ -9,5 +9,5 @@ public class ReservationData {
     private ReservationInfo reservationInfo;
     private List<Service> services;
     private PaymentDetail paymentDetail;
-    private List<Object> invoices; // Tipini daha sonra detaylandırabilirsiniz.
+    private List<Object> invoices; 
 }

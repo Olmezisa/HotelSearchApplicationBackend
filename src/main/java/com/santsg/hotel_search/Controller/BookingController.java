@@ -4,6 +4,10 @@ package com.santsg.hotel_search.Controller;
 import com.santsg.hotel_search.DTO.BeginTransactionRequest;
 import com.santsg.hotel_search.DTO.CommitTransactionRequest;
 import com.santsg.hotel_search.DTO.CommitTransactionResponse;
+import com.santsg.hotel_search.DTO.GetReservationDetailRequest;
+import com.santsg.hotel_search.DTO.GetReservationDetailResponse;
+import com.santsg.hotel_search.DTO.GetReservationListRequest;
+import com.santsg.hotel_search.DTO.GetReservationListResponse;
 import com.santsg.hotel_search.DTO.RemoveServicesRequest;
 import com.santsg.hotel_search.DTO.AddServices.AddServicesRequest;
 import com.santsg.hotel_search.DTO.SetReservationInfo.SetReservationInfoRequest;
@@ -75,6 +79,22 @@ public class BookingController {
         }
         log.info("Rezervasyon tamamlanıyor. Transaction ID: {}", request.getTransactionId());
         CommitTransactionResponse response = bookingService.commitTransaction(request);
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/get-detail")
+    public ResponseEntity<GetReservationDetailResponse> getReservationDetail(@RequestBody GetReservationDetailRequest request) {
+        if (request.getReservationNumber() == null || request.getReservationNumber().isBlank()) {
+            return ResponseEntity.badRequest().build();
+        }
+        log.info("Rezervasyon detayı isteniyor. Rezervasyon No: {}", request.getReservationNumber());
+        GetReservationDetailResponse response = bookingService.getReservationDetail(request);
+        return ResponseEntity.ok(response);
+    }
+     @PostMapping("/get-list")
+    public ResponseEntity<GetReservationListResponse> getReservationList(@RequestBody GetReservationListRequest request) {
+        log.info("Rezervasyon listesi isteniyor. Kriterler: {}", request);
+        GetReservationListResponse response = bookingService.getReservationList(request);
         return ResponseEntity.ok(response);
     }
 }

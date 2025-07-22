@@ -7,7 +7,6 @@ import lombok.Data;
 
 
 @Data
-
 public class CommitTransactionRequest {
     private String transactionId;
     private Integer paymentOption; 
