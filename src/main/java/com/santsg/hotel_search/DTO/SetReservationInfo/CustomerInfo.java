@@ -11,5 +11,5 @@ public class CustomerInfo {
     private String birthDate;
     private String identityNumber;
     private TravellerInfo.Address address;
-    // Diğer alanlar (taxInfo, passportInfo vb.) da buraya eklenebilir.
+    
 }
