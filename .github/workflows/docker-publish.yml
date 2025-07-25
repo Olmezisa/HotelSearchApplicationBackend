@@ -1,0 +1,47 @@
+# İş akışının (workflow) GitHub Actions arayüzünde görünecek adı
+name: Docker İmajını Oluştur ve Docker Hub'a Yükle
+
+# Bu iş akışının ne zaman tetikleneceğini belirler
+on:
+  # 1. 'main' branch'ine her kod gönderildiğinde (push) otomatik olarak çalışır
+  push:
+    branches: [ "main" ]
+
+  # 2. GitHub Actions sekmesinden manuel olarak da çalıştırabilmenizi sağlar
+  workflow_dispatch:
+
+# İş akışının yapacağı işleri tanımlar
+jobs:
+  # 'build-and-push' adında bir iş tanımlıyoruz
+  build-and-push:
+    # Bu işin çalışacağı sanal makine ortamını belirtir. 'ubuntu-latest' standart ve iyi bir seçimdir.
+    runs-on: ubuntu-latest
+
+    # İşin adımlarını sıralar
+    steps:
+      # 1. Adım: Proje kodunu sanal makineye indirir
+      # Bu sayede Dockerfile ve diğer proje dosyalarına erişebiliriz.
+      - name: Kodu İndir (Checkout)
+        uses: actions/checkout@v4
+
+      - name: Docker Hub'a Giriş Yap
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # 3. Adım: Docker imajını oluşturan ve yükleyen ana eylem
+      - name: Docker İmajını Oluştur ve Yükle
+        uses: docker/build-push-action@v5
+        with:
+          # context: '.', Dockerfile'ın projenin kök dizininde olduğunu belirtir.
+          context: .
+          # push: true, imajı oluşturduktan sonra Docker Hub'a yüklemesini söyler.
+          push: true
+          # tags: imaja verilecek etiketleri belirler. 
+          # İki etiket kullanmak iyi bir pratiktir:
+          #   - latest: Her zaman en güncel sürümü temsil eder.
+          #   - Commit SHA: Her bir versiyonu eşsiz olarak tanımlar.
+          #
+          # !!! BU SATIRI KENDİNİZE GÖRE GÜNCELLEYİN !!!
+          tags: olmezisaa/hotel-search:latest, olmezisaa/hotel-search:${{ github.sha }}

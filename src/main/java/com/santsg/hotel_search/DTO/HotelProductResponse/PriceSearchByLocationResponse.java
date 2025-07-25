@@ -1,10 +1,11 @@
-package com.santsg.hotel_search.DTO.response;
+package com.santsg.hotel_search.DTO.HotelProductResponse;
 
 import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
 
 @Data
-public class PriceSearchByHotelResponse {
+public class PriceSearchByLocationResponse {
 
     private Header header;
     private Body body;
@@ -13,8 +14,8 @@ public class PriceSearchByHotelResponse {
     public static class Header {
         private String requestId;
         private boolean success;
+        private String responseTime;
         private List<Message> messages;
-        private String responseTime;  // gördüğüm için ekledim
     }
 
     @Data
@@ -30,37 +31,37 @@ public class PriceSearchByHotelResponse {
         private String searchId;
         private String expiresOn;
         private List<Hotel> hotels;
+        private List<Tour> tours;
         private Details details;
     }
 
     @Data
     public static class Details {
         private boolean enablePaging;
-        private boolean getOnlyBestOffers;
+        private boolean getOnlyBestOffers; 
     }
 
     @Data
     public static class Hotel {
         private GeoLocation geolocation;
-        private double stars;  // bazen 4.5 gibi decimal var
-        private double rating; // ekledim, gördüğüm için
+        private int stars;
+        private int rating;
         private List<Theme> themes;
-        private List<Facility> facilities; // yeni alan
-        private Location location; // json’da var, önceden yoktu
+        private List<Facility> facilities;
+        private Location location;
         private Country country;
         private City city;
         private GiataInfo giataInfo;
-        private Town town;
-        private Village village;
         private List<Offer> offers;
         private String address;
-        private int provider;
-        private List<BoardGroup> boardGroups;  // json'daki gibi
+        private List<BoardGroup> boardGroups;
         private List<Board> boards;
+        private List<Badge> badges;
         private HotelCategory hotelCategory;
         private boolean hasThirdPartyOwnOffer;
         private ThirdPartyInformation thirdPartyInformation;
         private boolean hasChannelManagerOffer;
+        private int provider;
         private String thumbnail;
         private String thumbnailFull;
         private Description description;
@@ -82,9 +83,9 @@ public class PriceSearchByHotelResponse {
 
     @Data
     public static class Facility {
-        private boolean isPriced;
         private String id;
         private String name;
+        private boolean isPriced;
     }
 
     @Data
@@ -99,11 +100,11 @@ public class PriceSearchByHotelResponse {
 
     @Data
     public static class Country {
-        private String internationalCode; // json’da böyle geldi
+        private String internationalCode;
         private String name;
         private int provider;
-        private boolean isTopRegion;
         private boolean ownLocation;
+        private boolean isTopRegion;
     }
 
     @Data
@@ -123,57 +124,53 @@ public class PriceSearchByHotelResponse {
     }
 
     @Data
-    public static class Town {
-        private String name;
-        private String latitude;
-        private String longitude;
-        private int provider;
+    public static class Board {
         private String id;
     }
 
     @Data
-    public static class Village {
-        private String name;
-        private int provider;
+    public static class BoardGroup {
         private String id;
+        private String name;
+    }
+
+    @Data
+    public static class Badge {
+                private String id;
+        private String name;
+        private String type;
+    }
+
+    @Data
+    public static class HotelCategory {
+        private String name;
+        private String id;
+        private String code;
+    }
+
+    @Data
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public static class ThirdPartyInformation {
+        private List<Object> infos; 
     }
 
     @Data
     public static class Offer {
         private int night;
         private boolean isAvailable;
-        private int availability;         // yeni
-        private boolean availabilityChecked; // yeni
+        private int availability;
+        private boolean availabilityChecked;
         private List<Room> rooms;
         private boolean isRefundable;
-        private List<CancellationPolicy> cancellationPolicies;  // yeni
-        private boolean thirdPartyOwnOffer;                       // yeni
-        private List<Object> restrictions;                        // boş array, Object olarak bıraktım
-        private List<Object> warnings;                            // boş array
-        private boolean isChannelManager;                         // yeni
+        private List<CancellationPolicy> cancellationPolicies;
+        private boolean thirdPartyOwnOffer;
+        private boolean isChannelManager;
         private String expiresOn;
         private String offerId;
         private String checkIn;
         private Price price;
-    }
-
-    @Data
-    public static class Room {
-        private String roomId;
-        private String roomName;
-        private List<String> roomGroups;
-        private String accomId;
-        private String accomName;
-        private String boardId;
-        private String boardName;
-        private List<BoardGroup> boardGroups;
-        private int allotment;
-        private int stopSaleGuaranteed;
-        private int stopSaleStandart;
-        private Price price;
-        private List<Traveller> travellers;
-        private ThirdPartyInformation thirdPartyInformation; // oda içi boş obje için
-        private boolean visiblePL; // gördüğüm için ekledim
+        private List<Object> restrictions;
+        private List<Object> warnings;
     }
 
     @Data
@@ -185,14 +182,17 @@ public class PriceSearchByHotelResponse {
     }
 
     @Data
-    public static class BoardGroup {
-        private String id;
-        private String name;
-    }
-
-    @Data
-    public static class Board {
-        private String id;
+    public static class Room {
+        private String roomId;
+        private String roomName;
+        private String boardId;
+        private String boardName;
+        private List<BoardGroup> boardGroups;
+        private int stopSaleGuaranteed;
+        private int stopSaleStandart;
+        private List<Traveller> travellers;
+        private ThirdPartyInformation thirdPartyInformation;
+        private boolean visiblePL;
     }
 
     @Data
@@ -204,24 +204,17 @@ public class PriceSearchByHotelResponse {
     @Data
     public static class Traveller {
         private int type;
-        private int age;          // json’da var
+        private int age;
         private String nationality;
-    }
-
-    @Data
-    public static class ThirdPartyInformation {
-        private List<Object> infos; // boş array olarak gelmiş
-    }
-
-    @Data
-    public static class HotelCategory {
-        private String name;
-        private String id;
-        private String code;
     }
 
     @Data
     public static class Description {
         private String text;
+    }
+
+    @Data
+    public static class Tour {
+        
     }
 }

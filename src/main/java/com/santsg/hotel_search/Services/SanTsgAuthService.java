@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.santsg.hotel_search.DTO.LoginRequest;
-import com.santsg.hotel_search.DTO.response.LoginResponse;
+import com.santsg.hotel_search.DTO.HotelProductResponse.LoginResponse;
 
 
 @Service

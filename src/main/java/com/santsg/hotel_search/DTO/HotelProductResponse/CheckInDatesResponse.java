@@ -1,4 +1,4 @@
-package com.santsg.hotel_search.DTO.response;
+package com.santsg.hotel_search.DTO.HotelProductResponse;
 
 
 import java.util.List;

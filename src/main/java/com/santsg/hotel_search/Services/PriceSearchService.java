@@ -1,7 +1,8 @@
 package com.santsg.hotel_search.Services;
 
 import com.santsg.hotel_search.DTO.*;
-import com.santsg.hotel_search.DTO.response.*;
+import com.santsg.hotel_search.DTO.HotelProductResponse.*;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;

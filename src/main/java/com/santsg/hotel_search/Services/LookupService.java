@@ -2,8 +2,9 @@ package com.santsg.hotel_search.Services;
 
 import com.santsg.hotel_search.DTO.Currency;
 import com.santsg.hotel_search.DTO.Nationality;
-import com.santsg.hotel_search.DTO.response.CurrenciesResponse;
-import com.santsg.hotel_search.DTO.response.NationalitiesResponse;
+import com.santsg.hotel_search.DTO.HotelProductResponse.CurrenciesResponse;
+import com.santsg.hotel_search.DTO.HotelProductResponse.NationalitiesResponse;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;

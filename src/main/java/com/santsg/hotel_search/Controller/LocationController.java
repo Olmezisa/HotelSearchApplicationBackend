@@ -2,7 +2,7 @@ package com.santsg.hotel_search.Controller;
 
 
 import com.santsg.hotel_search.DTO.CheckInDatesRequest;
-import com.santsg.hotel_search.DTO.response.ArrivalAutocompleteResponse;
+import com.santsg.hotel_search.DTO.HotelProductResponse.ArrivalAutocompleteResponse;
 import com.santsg.hotel_search.Services.LocationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

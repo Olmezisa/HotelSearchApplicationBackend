@@ -1,14 +1,14 @@
 package com.santsg.hotel_search.Services;
 
 import com.santsg.hotel_search.DTO.BeginTransactionRequest;
-import com.santsg.hotel_search.DTO.CommitTransactionRequest;
-import com.santsg.hotel_search.DTO.CommitTransactionResponse;
 import com.santsg.hotel_search.DTO.GetReservationDetailRequest;
 import com.santsg.hotel_search.DTO.GetReservationDetailResponse;
 import com.santsg.hotel_search.DTO.GetReservationListRequest;
 import com.santsg.hotel_search.DTO.GetReservationListResponse;
 import com.santsg.hotel_search.DTO.RemoveServicesRequest; // Yeni DTO'yu import et
 import com.santsg.hotel_search.DTO.AddServices.AddServicesRequest;
+import com.santsg.hotel_search.DTO.CommitTransaction.CommitTransactionRequest;
+import com.santsg.hotel_search.DTO.CommitTransaction.CommitTransactionResponse;
 import com.santsg.hotel_search.DTO.SetReservationInfo.SetReservationInfoRequest;
 import com.santsg.hotel_search.DTO.Transaction.BeginTransactionResponse;
 
