@@ -3,27 +3,15 @@ package com.santsg.hotel_search.DTO.HotelProduct;
 import lombok.Data;
 import java.util.List;
 
+import com.santsg.hotel_search.Common.Header;
+
 @Data
 public class PriceSearchByHotelResponse {
 
     private Header header;
     private Body body;
 
-    @Data
-    public static class Header {
-        private String requestId;
-        private boolean success;
-        private List<Message> messages;
-        private String responseTime;  // gördüğüm için ekledim
-    }
-
-    @Data
-    public static class Message {
-        private int id;
-        private String code;
-        private int messageType;
-        private String message;
-    }
+  
 
     @Data
     public static class Body {
@@ -149,8 +137,8 @@ public class PriceSearchByHotelResponse {
         private List<CancellationPolicy> cancellationPolicies;  // yeni
         private boolean thirdPartyOwnOffer;                       // yeni
         private List<Object> restrictions;                        // boş array, Object olarak bıraktım
-        private List<Object> warnings;                            // boş array
-        private boolean isChannelManager;                         // yeni
+        private List<Object> warnings;                            
+        private boolean isChannelManager;                         
         private String expiresOn;
         private String offerId;
         private String checkIn;
