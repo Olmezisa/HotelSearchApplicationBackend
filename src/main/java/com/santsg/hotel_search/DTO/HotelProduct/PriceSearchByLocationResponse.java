@@ -2,6 +2,8 @@ package com.santsg.hotel_search.DTO.HotelProduct;
 
 import lombok.Data;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.santsg.hotel_search.Common.Header;
+
 import java.util.List;
 
 @Data
@@ -10,21 +12,6 @@ public class PriceSearchByLocationResponse {
     private Header header;
     private Body body;
 
-    @Data
-    public static class Header {
-        private String requestId;
-        private boolean success;
-        private String responseTime;
-        private List<Message> messages;
-    }
-
-    @Data
-    public static class Message {
-        private int id;
-        private String code;
-        private int messageType;
-        private String message;
-    }
 
     @Data
     public static class Body {
