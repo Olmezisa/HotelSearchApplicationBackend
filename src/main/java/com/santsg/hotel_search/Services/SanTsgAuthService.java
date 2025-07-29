@@ -7,8 +7,8 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.santsg.hotel_search.DTO.LoginRequest;
-import com.santsg.hotel_search.DTO.HotelProductResponse.LoginResponse;
+import com.santsg.hotel_search.DTO.HotelProduct.LoginResponse;
+import com.santsg.hotel_search.DTO.PriceSearch.LoginRequest;
 
 
 @Service

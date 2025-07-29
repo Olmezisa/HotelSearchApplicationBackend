@@ -1,9 +1,9 @@
 package com.santsg.hotel_search.Services;
 
-import com.santsg.hotel_search.DTO.ArrivalAutocompleteRequest;
-import com.santsg.hotel_search.DTO.CheckInDatesRequest;
-import com.santsg.hotel_search.DTO.HotelProductResponse.ArrivalAutocompleteResponse;
-import com.santsg.hotel_search.DTO.HotelProductResponse.CheckInDatesResponse;
+import com.santsg.hotel_search.DTO.HotelProduct.ArrivalAutocompleteRequest;
+import com.santsg.hotel_search.DTO.HotelProduct.ArrivalAutocompleteResponse;
+import com.santsg.hotel_search.DTO.HotelProduct.CheckInDatesRequest;
+import com.santsg.hotel_search.DTO.HotelProduct.CheckInDatesResponse;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;

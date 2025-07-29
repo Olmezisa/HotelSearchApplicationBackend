@@ -1,7 +1,7 @@
 package com.santsg.hotel_search.Controller;
 
-import com.santsg.hotel_search.DTO.Currency;
-import com.santsg.hotel_search.DTO.Nationality;
+import com.santsg.hotel_search.DTO.HotelProduct.Currency;
+import com.santsg.hotel_search.DTO.HotelProduct.Nationality;
 import com.santsg.hotel_search.Services.LookupService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

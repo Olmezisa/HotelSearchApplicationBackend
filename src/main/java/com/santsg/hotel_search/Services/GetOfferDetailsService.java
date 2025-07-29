@@ -1,7 +1,7 @@
 package com.santsg.hotel_search.Services;
 
-import com.santsg.hotel_search.DTO.GetOfferDetailsRequest;
-import com.santsg.hotel_search.DTO.HotelProductResponse.GetOfferDetailsResponse;
+import com.santsg.hotel_search.DTO.GetOffers.GetOfferDetailsRequest;
+import com.santsg.hotel_search.DTO.HotelProduct.GetOfferDetailsResponse;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
