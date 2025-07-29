@@ -1,9 +1,9 @@
 package com.santsg.hotel_search.Controller;
 
-import com.santsg.hotel_search.DTO.GetOfferDetailsRequest;
-import com.santsg.hotel_search.DTO.GetOffersRequest;
-import com.santsg.hotel_search.DTO.HotelProductResponse.GetOfferDetailsResponse;
-import com.santsg.hotel_search.DTO.HotelProductResponse.GetOffersResponse;
+import com.santsg.hotel_search.DTO.GetOffers.GetOfferDetailsRequest;
+import com.santsg.hotel_search.DTO.GetOffers.GetOffersRequest;
+import com.santsg.hotel_search.DTO.HotelProduct.GetOfferDetailsResponse;
+import com.santsg.hotel_search.DTO.HotelProduct.GetOffersResponse;
 import com.santsg.hotel_search.Services.GetOfferDetailsService;
 import com.santsg.hotel_search.Services.GetOffersService;
 import lombok.RequiredArgsConstructor;

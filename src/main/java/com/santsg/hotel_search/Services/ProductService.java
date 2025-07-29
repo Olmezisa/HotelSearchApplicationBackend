@@ -1,6 +1,6 @@
 package com.santsg.hotel_search.Services;
 
-import com.santsg.hotel_search.DTO.ProductInfoRequest;
+import com.santsg.hotel_search.DTO.HotelProduct.ProductInfoRequest;
 import com.santsg.hotel_search.DTO.ProductInfoResponse.HotelInfo;
 import com.santsg.hotel_search.DTO.ProductInfoResponse.ProductInfoApiResponse;
 

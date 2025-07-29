@@ -1,6 +1,6 @@
 package com.santsg.hotel_search.DTO.CommitTransaction;
 
-import com.santsg.hotel_search.DTO.HotelProductResponse.GetOfferDetailsResponse.Header;
+import com.santsg.hotel_search.DTO.HotelProduct.GetOfferDetailsResponse.Header;
 
 import lombok.Data;
 

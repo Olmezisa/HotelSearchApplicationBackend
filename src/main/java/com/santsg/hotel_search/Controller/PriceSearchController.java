@@ -1,8 +1,8 @@
 package com.santsg.hotel_search.Controller;
 
-import com.santsg.hotel_search.DTO.PriceSearchByHotelRequest;
-import com.santsg.hotel_search.DTO.PriceSearchByLocationRequest;
-import com.santsg.hotel_search.DTO.HotelProductResponse.*;
+import com.santsg.hotel_search.DTO.HotelProduct.*;
+import com.santsg.hotel_search.DTO.PriceSearch.PriceSearchByHotelRequest;
+import com.santsg.hotel_search.DTO.PriceSearch.PriceSearchByLocationRequest;
 import com.santsg.hotel_search.Services.PriceSearchService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
